@@ -17,7 +17,7 @@ ssh username@ip
 如果直接使用命令安装MySQL：`yum install mysql-community-server`
 会踩坑：No package mysql-community-server available. Error: Nothing to do
 
-![MP1](img/mysqlPitfall1.jpg)
+![MP1](img/CentOS7.9安装合集/mysqlPitfall1.jpg)
 :::
 
 用wget命令安装rpm包：（逐行执行下列命令）
@@ -27,7 +27,7 @@ wget https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm
 rpm -ivh mysql80-community-release-el7-1.noarch.rpm
 ```
 
-![MP2](img/mysqlPitfall2.jpg)
+![MP2](img/CentOS7.9安装合集/mysqlPitfall2.jpg)
 
 
 :::danger
@@ -45,7 +45,7 @@ Failing package is: mysql-community-common-8.0.33-1.el7.x86_64
 ```bash
 yum -y install mysql mysql-server --nogpgcheck
 ```
-![IM](img/installMysql.jpg)
+![IM](img/CentOS7.9安装合集/installMysql.jpg)
 
 检验是否安装成功
 
@@ -55,7 +55,7 @@ rpm -qa | grep mysql
 
 如果安装成功，会得到类似下图的输出:
 
-![IMS](img/installMysqlSuccess.jpg)
+![IMS](img/CentOS7.9安装合集/installMysqlSuccess.jpg)
 
 ### 配置密码
 
@@ -73,7 +73,7 @@ grep 'temporary password' /var/log/mysqld.log
 
 可以看到生成的临时密码：`root@localhost: <temp_pwd>`
 
-![MTP](img/mysqlTempPwd.jpg)
+![MTP](img/CentOS7.9安装合集/mysqlTempPwd.jpg)
 
 登录MySQL：注意-p与密码之间直接连接，不用空格。
 
@@ -81,7 +81,7 @@ grep 'temporary password' /var/log/mysqld.log
 mysql -uroot -p<pwd>
 ```
 
-![ML](img/mysqlLogin.jpg)
+![ML](img/CentOS7.9安装合集/mysqlLogin.jpg)
 
 
 现在准备修改密码
@@ -92,7 +92,7 @@ mysql -uroot -p<pwd>
 SHOW VARIABLES LIKE 'validate_password%';
 ```
 
-![MPP](img/mysqlPwdPolicy.jpg)
+![MPP](img/CentOS7.9安装合集/mysqlPwdPolicy.jpg)
 
 其中，validate_password.policy对应密码的强弱程度；validate_password.length对应密码长度。MySQL系统默认policy为1(MEDIUM，密码至少包含6个字符，并且必须包含一个数字和一个字母)，length默认为8。
 
@@ -114,7 +114,7 @@ ERROR 1193 (HY000): Unknown system variable 'validate_password_policy'
 
 需要注意的是MySQL 8.0版本下 **`validate_password.policy`** 对应旧版的`validate_password_policy`； **`validate_password.length`** 对应`validate_password_length`，如果在8.0中使用旧版的变量名称(`validate_password_policy`/`validate_password_length`)，则报错。
 
-![MDN](img/mysqlDeprecateName.jpg)
+![MDN](img/CentOS7.9安装合集/mysqlDeprecateName.jpg)
 :::
 
 如果想要修改策略，逐条执行如下命令
@@ -129,11 +129,11 @@ set global validate_password.length=<length>;
 ALTER USER 'root'@'localhost' IDENTIFIED BY <pwd>;
 ```
 
-![MPS](img/mysqlPwdSet.jpg)
+![MPS](img/CentOS7.9安装合集/mysqlPwdSet.jpg)
 
 退出后重新登录，成功登录即完成配置
 
-![EMR](img/exitMysqlRelogin.jpg)
+![EMR](img/CentOS7.9安装合集/exitMysqlRelogin.jpg)
 
 ## Miniconda
 
@@ -151,7 +151,7 @@ rm -rf ~/miniconda3/miniconda.sh
 
 完成后执行 conda --version，能看到版本即为安装完成
 
-![IMC](img/installMiniconda.jpg)
+![IMC](img/CentOS7.9安装合集/installMiniconda.jpg)
 
 ## Docker
 
@@ -180,13 +180,13 @@ sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 
 执行完成后，执行`docker -v`，能看到版本即为安装完成
 
-![ID](img/installDocker.jpg)
+![ID](img/CentOS7.9安装合集/installDocker.jpg)
 
 ## Python
 
 安装Miniconda的时候会安装Python，由于前面选择的latest，因此执行`python --version`，能看到安装了版本为3.11的Python。
 
-![IP311](img/installPython311.jpg)
+![IP311](img/CentOS7.9安装合集/installPython311.jpg)
 
 如果想要安装其他版本的Python，用Miniconda新建一个虚拟环境，指定Python环境即可。个人觉得比`yum install`再编译啥的简单方便得多。
 
@@ -197,7 +197,7 @@ conda create --name <env name> python=<version>
 
 虚拟环境建好后用`conda activate <env name>`进入虚拟环境，执行`python --version`可以看到此时的python版本为3.8
 
-![IP38](img/installPython38.jpg)
+![IP38](img/CentOS7.9安装合集/installPython38.jpg)
 
 
 ## Nginx

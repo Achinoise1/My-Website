@@ -6,11 +6,11 @@
 
 在python中导入rarfile库，打印查看默认rarfile的解压组件路径
 
-![RP](img/rarfilePath.jpg)
+![RP](img/rarfile报错/rarfilePath.jpg)
 
 发现默认路径是unrar，大概率与安装的rar解压组件的路径不同。因此需要显式说明：
 
-![RPR](img/rarfilePathResult.jpg)
+![RPR](img/rarfile报错/rarfilePathResult.jpg)
 
 如果使用windows，找到解压组件所在路径，代码添加如下内容后，重新运行即可：
 
@@ -28,8 +28,8 @@ rarfile.UNRAR_TOOL="/usr/bin/unar"
 
 测试一下
 
-![BER](img/beforeExplicitRar.jpg)
-![AER](img/afterExplicitRar.jpg)
+![BER](img/rarfile报错/beforeExplicitRar.jpg)
+![AER](img/rarfile报错/afterExplicitRar.jpg)
 
 ## 没有安装解压rar的相关组件
 
@@ -46,11 +46,11 @@ rarfile库安装之后，如果没有相关解压组件支撑则运行失败。�
 
 选择64位下载，等待下载完成。打开软件，按照指引选择好路径并安装。
 
-![WIG](img/winrarInstallGuide.jpg)
+![WIG](img/rarfile报错/winrarInstallGuide.jpg)
 
 安装完成后，打开刚才的路径`D:\Software\WinRar`，可以看到路径下有一个叫`UnRAR.exe`的程序。rarfile库调用这个程序完成解压操作。
 
-![RIP](img/rarInstallPlace.jpg)
+![RIP](img/rarfile报错/rarInstallPlace.jpg)
 
 ### Linux环境（以CentOS为例）安装unar
 
@@ -78,11 +78,11 @@ sudo yum install unar
 
 安装完成后，如果键入`unar`并回车，出现如下图内容，那么恭喜安装成功。
 
-![RIS](img/rarInstallSuccess.jpg)
+![RIS](img/rarfile报错/rarInstallSuccess.jpg)
 
 现在打开路径（默认安装到`/usr/bin/`路径下），可以看到路径下有一个名叫unar的文件。rarfile库调用这个文件完成解压操作。
 
-![RLP](img/rarLinuxPlace.jpg)
+![RLP](img/rarfile报错/rarLinuxPlace.jpg)
 
 [WinRAR - 压缩软件 老牌压缩软件知名产品 经典装机软件之一]:https://www.winrar.com.cn/
 

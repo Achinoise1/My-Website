@@ -4,7 +4,7 @@
 
 ## 在请求头手动添加属性
 
-![AA](img/addAttribute.jpg)
+![AA](img/apipost报错Content-Type/addAttribute.jpg)
 
 重新发送请求。如果成功，那么恭喜。如果还是报同样的错误，继续往下看。
 
@@ -40,4 +40,4 @@ class DoSomething(Resource):
 
 再次发送请求，返回200。
 
-![RA](img/requestAgain.jpg)
+![RA](img/apipost报错Content-Type/requestAgain.jpg)
