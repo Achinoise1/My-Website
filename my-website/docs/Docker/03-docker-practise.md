@@ -56,7 +56,7 @@ CMD echo "build finished"
 
 ### docker-compose
 
-在用docker部署应用时，大部分情况下会需要多个容器共同运作。docker-compose是一个方便运行多个容器的集成工具。仅需要把相关配置写入一个 YAML 文件，在命令行执行命令`docker compose -f <yml file> up -d`，即可完成创建和启动所有服务。
+在用docker部署应用时，大部分情况下会需要多个容器共同运作。docker-compose 是一个方便运行多个容器的集成工具。仅需要把相关配置写入一个 YAML 文件，在命令行执行命令 `docker compose -f <yml file> up -d`，即可完成创建和启动所有服务。
 
 一个 YAML 文件的书写格式大致如下：
 
@@ -164,6 +164,19 @@ docker compose -f <yml name> up -d
 
 ```bash
 sh xxx.sh
+```
+
+这里附上数据库和后端的 shell 文件
+
+```sh
+# 数据库 run-database.sh
+cd /root/database
+mysql -h127.0.0.1 -uroot -p123456 -e "CREATE DATABASE IF NOT EXISTS test; USE test; SOURCE book.sql; SOURCE question.sql; SOURCE user.sql; SOURCE statistics.sql;"
+
+# 后端 run-backend.sh
+cd /root/backend
+pip install -r requirements.txt -i https://pypi.douban.com/simple
+nohup python run.py &
 ```
 
 退出容器回到本机，执行命令测试联通性
@@ -360,7 +373,7 @@ ERROR 2003 (HY000): Can't connect to MySQL server on '127.0.0.1:3306' (111)
 sh <shell file>
 ```
 
-如果默认端口是3306，则不会出现上述错误。
+如果默认端口是3306，仍然出现了上述错误，可能需要考虑映射到宿主机端口是否被占用。
 
 ### 问题8 docker MySQL 容器的 root@localhost 丢失最高权限
 
@@ -397,7 +410,12 @@ docker stop 停止后重新启动，发现还是报同样的错误，猜测是 s
 
 ### 问题10 nginx: \[emerg\] bind() to 0.0.0.0:90 failed (98: Address already in use)
 
-初始设定的端口映射是宿主机端口80:容器端口80。退出到本机发现端口有占用情况，因此 `lsof -i:<port>` 和 `kill` 把占用端口关闭。此时重新启动，发现报同样的错误，尝试修改为容器端口90映射到宿主机上。Nginx 的服务默认开在80端口上，如果变为90，则 nginx.conf 配置文件中也需要修改对应的监听端口。修改后再次运行，进入到容器内测试 nginx，发现不再报该错误。
+初始设定的端口映射是宿主机端口80:容器端口80。退出到本机发现端口有占用情况，因此 `lsof -i:<port>` 和 `kill` 把占用端口关闭。此时重新启动，发现报同样的错误，尝试修改为容器端口90映射到宿主机上。Nginx 的服务默认开在80端口上，如果变为90，则 nginx.conf 配置文件中也需要修改对应的监听端口。修改后再次运行，进入到容器内测试 nginx，发现不再报该错误。建议映射成
+
+```bash
+<宿主机自定义端口>:80
+# eg-8080:80
+```
 
 ### 问题11 nginx报错：500 Interval Server Error
 
@@ -415,7 +433,7 @@ docker stop 停止后重新启动，发现还是报同样的错误，猜测是 s
 前期在实验的时候，三个部分都是放在孤立的容器中运行，当把三个服务放到一个 YAML 文件中，添加依赖关系后运行，出现如图错误：  
 ![C](img/docker实战/cycle.jpg)
 
-如果服务1依赖于服务2，服务2依赖于服务1，此时生成循环。docker就无法解决这个类似先有鸡还是先有蛋的问题。
+如果服务1依赖于服务2，服务2依赖于服务1，此时生成循环。docker 就无法解决这个类似先有鸡还是先有蛋的问题。
 
 修改后再次运行，无循环依赖错误，能够正常运行，由于未指定网络配置，默认在同一个网络下运行服务，问题2解决。至此，以上遇到的问题都用特定的办法解决，全部服务正常运行。
 
@@ -427,7 +445,7 @@ docker stop 停止后重新启动，发现还是报同样的错误，猜测是 s
 
 ### docker报错找原因
 
-使用 docker 创建容器时，可能会遇到各种各样的问题，这个时候日志能够帮助找到问题所在，更快锁定 bug 位置，找到解决方案。
+使用 docker 创建容器时，可能会遇到各种各样的问题，这个时候通过 `docker logs <container id>` 查看日志，更快锁定 bug 位置，找到解决方案。
 
 ```bash
 docker logs <container id>
