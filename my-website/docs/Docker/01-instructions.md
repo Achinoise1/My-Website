@@ -162,6 +162,12 @@ docker exec <container id> <command>
 docker network ls
 ```
 
+### 查看指定网络的具体内容
+
+```bash
+docker network inspect <network name>
+```
+
 ### 宿主机查看容器内部端口占用情况
 ```bash
 docker port <container id>
