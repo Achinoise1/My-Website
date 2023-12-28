@@ -33,7 +33,7 @@ npm install --save-dev http-proxy-middleware
 
 在index.js同层级下新建一个文件：setupProxy.js，具体代码如下：
 
-```js
+```jsx
 const { createProxyMiddleware } = require('http-proxy-middleware')
  
 module.exports = function (app) {
@@ -112,7 +112,7 @@ import axios from 'axios'
 
 假设现在要发送一个post请求，传参使用**form-data**，并存储响应数据：
 
-```js
+```jsx
 import axios from 'axios';
 function Test(){
     // 用于存储接口响应
@@ -148,7 +148,7 @@ export default Test;
 
 GET请求同理：
 
-```js
+```jsx
 import axios from 'axios';
 function Test(){
     // 用于存储接口响应

@@ -9,7 +9,7 @@
 
 这个能够回退到上一个界面，但是没有刷新内容，因此被弃掉。而且类似这样的代码：
 
-```js
+```jsx
 function Login(){
     const checkThenBackRefresh = () =>{
         //...登录处理代码
@@ -33,7 +33,7 @@ function Login(){
 
 直接把回退+刷新放在一个箭头函数中并不可取，因此考虑分开放。
 
-```js
+```jsx
 function Login(){
     const checkThenBack = () =>{
         //...登录处理代码
@@ -50,7 +50,7 @@ function Login(){
 }
 ```
 
-```js
+```jsx
 // 页面A放刷新代码
 function Test(){
     useEffect(() => {
@@ -73,14 +73,14 @@ function Test(){
 
 有了回退准备的前提下，编写代码并测试无误后，得到如下内容：
 
-```js
+```jsx
 //utils.js
 export function toLogin(navigate) {
     navigate('/login')
 }
 ```
 
-```js
+```jsx
 // 页面A
 import { useNavigate } from "react-router-dom";
 import { toLogin } from './utils.js';
@@ -98,7 +98,7 @@ function Test(){
 }
 ```
 
-```js
+```jsx
 // 登录页面
 import { useNavigate } from "react-router-dom";
  
@@ -120,7 +120,7 @@ function Login(){
 }
 ```
 
-```js
+```jsx
 // App.js
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { Component } from 'react';
