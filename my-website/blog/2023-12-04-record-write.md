@@ -13,9 +13,9 @@ tags: [writing, docusaurus]
 - [x] docker实战——现有项目readbook部署 
 - [x] docker compose 下的容器通信
 - [x] react 条件渲染
-- [x] react 存储用户信息
+- [ ] react 存储用户信息
 - [ ] react antd 修改样式 涉及修改后影响到的层级
-- [ ] react antd 表单的一些设置 排列 Input css 校验...
+- [x] react antd 表单的一些设置 排列 Input css 校验...
 - [ ] react 时间戳 React中使用的 `Date.now()` 函数返回的时间戳是以毫秒为单位的，这个时间戳通常是一个13位的数字，表示当前时间距离1970年1月1日0时0分0秒的毫秒数。如果你希望得到一个10位的时间戳，可以使用 `Math.floor(Date.now() / 1000)` 来将毫秒转化为秒。
 - [ ] react 类与hook
 - [ ] js 常用小技巧
