@@ -234,6 +234,8 @@ rule={[
 ## 最终代码和效果
 
 添加属性并再次美化后，得到如下代码：
+<details>
+  <summary>展开</summary>
 ```jsx
 import React, { useEffect, useState, useReducer, useRef } from 'react'
 import axios from 'axios';
@@ -354,6 +356,7 @@ function Test() {
 
 export default Test;
 ```
+</details>
 
 美化后的页面如下：
 

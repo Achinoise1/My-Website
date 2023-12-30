@@ -143,3 +143,26 @@
     </pre>
 </td>
 ```
+
+## 代码块
+
+### 折叠代码块
+
+有些时候希望能够折叠大量代码，用户想要查看时再自行点击展开。Docusaurus 官方没有提供相关的插件，可以直接用 markdown 自带代码折叠，用法如下：
+
+```md
+<details>
+  <summary>折叠显示文字</summary>
+  <!--
+    ```lang
+    your code```
+  -->
+</details>
+```
+
+<details>
+  <summary>折叠显示文字</summary>
+```py
+print('hello world')
+```
+</details>
