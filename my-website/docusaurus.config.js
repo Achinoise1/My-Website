@@ -65,6 +65,10 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 5,
+      },
       navbar: {
         title: 'My Site',
         logo: {
@@ -76,9 +80,9 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: '文档',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
+          { to: '/blog', label: '博客', position: 'left' },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -126,6 +130,14 @@ const config = {
               {
                 label: 'Github',
                 href: 'https://github.com/Achinoise1',
+              },
+              {
+                label: 'Read-Book',
+                href: 'http://readbook.castamerego.com/'
+              },
+              {
+                label: 'Castamere',
+                href: 'http://dino.castamerego.com/'
               }
             ],
           },
